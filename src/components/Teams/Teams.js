@@ -10,7 +10,6 @@ import {
     TableCell,
     TableBody
 } from "@material-ui/core";
-// import Player from './Player/Player.js'
 import useStyles from './styles.js'
 import { useSelector } from "react-redux";
 
@@ -19,6 +18,8 @@ const Teams = () => {
     const teamsState = useSelector((state) => state.teams);
     const teams = teamsState.teams
     console.log('teams', teams)
+
+    const noSecondPlayer = <span><i>No second player</i></span>
 
     return (
         !teams ? <CircularProgress /> : (
@@ -36,7 +37,7 @@ const Teams = () => {
                             <TableRow key={team.id}>
                                 <TableCell>{team.name}</TableCell>
                                 <TableCell>{team.player1}</TableCell>
-                                <TableCell>{team.player2 || 'No second player'}</TableCell>
+                                <TableCell>{team.player2 || noSecondPlayer}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

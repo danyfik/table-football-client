@@ -12,17 +12,18 @@ const getTeams = () => async (dispatch) => {
     }
 }
 
-export default {
-    getTeams
+const addTeam = (name, player1, player2) => async (dispatch) => {
+    try {
+        const { data } = await api.addTeam(name, player1, player2);
+        console.log('DATA', data)
+
+        dispatch({ type: 'CREATE_TEAM', payload: data })
+    } catch (error) {
+        console.log(error.message);
+    }
 }
-//
-// export const createPlayer = (player) => async (dispatch) => {
-//     try {
-//         const { data } = await api.createPlayer(player);
-//         console.log(data)
-//
-//         dispatch({ type: 'CREATE', payload: data })
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
+
+export default {
+    getTeams,
+    addTeam
+}

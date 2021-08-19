@@ -12,8 +12,13 @@ export default makeStyles((theme) => ({
         textAlign: 'center'
     },
     table: {
-        minWidth: 400
+        minWidth: 400,
+
     },
+    // tableRow: {
+    //     backgroundColor: 'black',
+    //     fontColor: 'white',
+    // },
     root: {
         '& .MuiTextField-root': {
             margin: theme.spacing(1),

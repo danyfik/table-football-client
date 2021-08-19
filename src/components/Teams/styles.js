@@ -33,5 +33,8 @@ export default makeStyles((theme) => ({
     },
     buttonSubmit: {
         marginBottom: 10,
+    },
+    select: {
+        width: '100%'
     }
 }));
