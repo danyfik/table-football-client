@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
-import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
-import { useDispatch } from "react-redux";
+import {Container, AppBar, Typography, Grow, Grid, Button} from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
 
 import { getPlayers } from './actions/playersActions.js';
 import { getTeams } from './actions/teamsActions.js';
+import { getGames } from './actions/gamesActions.js';
+import allActions from './actions/index.js';
 import Players from './components/Players/Players.js'
 import Teams from './components/Teams/Teams.js'
+import Games from './components/Games/Games.js'
 import useStyles from './styles.js'
 
 const App = () => {
@@ -13,13 +16,29 @@ const App = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getPlayers());
-        dispatch(getTeams());
+        dispatch(allActions.playersActions.getPlayers());
+        dispatch(allActions.teamsActions.getTeams());
+        dispatch(allActions.gamesActions.getGames());
+        // dispatch(getTeams());
+        // dispatch(getGames());
     }, [dispatch])
 
-    // useEffect(() => {
-    //     dispatch(getTeams());
-    // }, [dispatch])
+
+    // function fik() {
+    //     console.log('fik')
+    //     dispatch(allActions.playersActions.getPlayers())
+    //     openPlayers = true
+    // }
+    // function fik2() {
+    //     console.log('fik2')
+    //     dispatch(allActions.teamsActions.getTeams())
+    //     openTeams = true
+    // }
+    // function fik3() {
+    //     console.log('fik3')
+    //     dispatch(allActions.gamesActions.getGames())
+    //     openGames = true
+    // }
 
     return (
         <Container maxWidth="lg">
@@ -28,16 +47,44 @@ const App = () => {
             </AppBar>
             <Grow in>
                 <Container>
-                    <Grid container justify="space-between" alignItems="stretch" spacing={3}>
-                        <Grid>
-                            <h1>Players</h1>
-                            <Players />
-                        </Grid>
-                        <Grid>
-                            <h1>Teams</h1>
-                            <Teams />
-                        </Grid>
-                    </Grid>
+                    {/*<Button onClick={fik}>Players</Button>*/}
+                    {/*<Button onClick={fik2}>Teams</Button>*/}
+                    {/*<Button onClick={fik3}>Games</Button>*/}
+                    {/*<Button onClick={() => dispatch(allActions.playersActions.addPlayer('Jack', 'Canada'))}>Add Player</Button>*/}
+                        <Container>
+                            <Grid container justify="space-between" alignItems="stretch" spacing={2}>
+                                <Grid item xs={12} sm={7}>
+                                    <h1>Players</h1>
+                                    <Players/>
+                                </Grid>
+                            </Grid>
+                        </Container>
+                        <Container>
+                            <Grid container justify="space-between" alignItems="stretch" spacing={2}>
+                                <Grid item xs={12} sm={7}>
+                                    <h1>Teams</h1>
+                                    <Teams/>
+                                </Grid>
+                            </Grid>
+                        </Container>
+                        <Container>
+                            <h1>Games</h1>
+                            <Games/>
+                        </Container>
+                    {/*<Grid container justify="space-between" alignItems="stretch" spacing={3}>*/}
+                    {/*    <Grid>*/}
+                    {/*        <h1>Players</h1>*/}
+                    {/*        <Players />*/}
+                    {/*    </Grid>*/}
+                    {/*    <Grid>*/}
+                    {/*        <h1>Teams</h1>*/}
+                    {/*        <Teams />*/}
+                    {/*    </Grid>*/}
+                    {/*    <Grid>*/}
+                    {/*        <h1>Games</h1>*/}
+                    {/*        <Games />*/}
+                    {/*    </Grid>*/}
+                    {/*</Grid>*/}
                 </Container>
             </Grow>
         </Container>

@@ -18,6 +18,7 @@ const Teams = () => {
     const classes = useStyles();
     const teamsState = useSelector((state) => state.teams);
     const teams = teamsState.teams
+    console.log('teams', teams)
 
     return (
         !teams ? <CircularProgress /> : (
@@ -34,8 +35,8 @@ const Teams = () => {
                         {teams.map((team) => (
                             <TableRow key={team.id}>
                                 <TableCell>{team.name}</TableCell>
-                                <TableCell>{team.player1Id}</TableCell>
-                                <TableCell>{team.player2Id ? team.player2Id : 'No second player'}</TableCell>
+                                <TableCell>{team.player1}</TableCell>
+                                <TableCell>{team.player2 || 'No second player'}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

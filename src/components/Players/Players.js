@@ -7,9 +7,8 @@ import { useSelector } from "react-redux";
 const Players = () => {
     const classes = useStyles();
     const playersState = useSelector((state) => state.players);
-    console.log('players', playersState.players)
     const players = playersState.players
-    console.log('players juste', players)
+    console.log('players', players)
 
     return (
         !players ? <CircularProgress /> : (

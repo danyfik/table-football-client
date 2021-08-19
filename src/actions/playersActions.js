@@ -1,23 +1,28 @@
 import * as api from '../api';
 
-export const getPlayers = () => async (dispatch) => {
+const getPlayers = () => async (dispatch) => {
     try {
         const { data } = await api.fetchPlayers();
-        console.log('DATA', data)
+        console.log('DATA players', data)
 
-        dispatch({ type: 'FETCH_ALL', payload: data })
+        dispatch({ type: 'FETCH_ALL_PLAYERS', payload: data })
     } catch (error) {
         console.log(error.message);
     }
 }
 
-// export const createPlayer = (player) => async (dispatch) => {
-//     try {
-//         const { data } = await api.createPlayer(player);
-//         console.log(data)
-//
-//         dispatch({ type: 'CREATE', payload: data })
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
+const addPlayer = (name, country) => async (dispatch) => {
+    try {
+        const { data } = await api.addPlayer(name, country);
+        console.log('DATA', data)
+
+        dispatch({ type: 'CREATE_PLAYER', payload: data })
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+export default {
+    getPlayers,
+    addPlayer
+}

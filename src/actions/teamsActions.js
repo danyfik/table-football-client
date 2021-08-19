@@ -1,14 +1,19 @@
 import * as api from '../api';
 
-export const getTeams = () => async (dispatch) => {
+const getTeams = () => async (dispatch) => {
     try {
         const { data } = await api.fetchTeams();
-        console.log('DATA', data)
+        console.log('DATA teams', data)
 
-        dispatch({ type: 'FETCH_ALL', payload: data })
+        // dispatch(data);
+        dispatch({ type: 'FETCH_ALL_TEAMS', payload: data })
     } catch (error) {
         console.log(error.message);
     }
+}
+
+export default {
+    getTeams
 }
 //
 // export const createPlayer = (player) => async (dispatch) => {
