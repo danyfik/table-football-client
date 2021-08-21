@@ -8,6 +8,7 @@ import allActions from './actions/index.js';
 import PlayersContainer from './components/Players/PlayersContainer.js'
 import TeamsContainer from './components/Teams/TeamsContainer.js'
 import GamesContainer from './components/Games/GamesContainer.js'
+import Dashboard from './components/Dashboard/Dashboard.js'
 import useStyles from './styles.js'
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
                     <Route path="/" exact component={PlayersContainer} />
                     <Route path="/teams" component={TeamsContainer} />
                     <Route path="/games" component={GamesContainer} />
+                    <Route path="/dashboard" component={Dashboard} />
                 </Switch>
             </Router>
             <Grow in>
