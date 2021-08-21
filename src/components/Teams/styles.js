@@ -14,6 +14,12 @@ export default makeStyles((theme) => ({
     table: {
         minWidth: 400
     },
+    tableRow: {
+        backgroundColor: 'black',
+    },
+    tableCell: {
+        color: 'white'
+    },
     root: {
         '& .MuiTextField-root': {
             margin: theme.spacing(1),
@@ -35,6 +41,8 @@ export default makeStyles((theme) => ({
         marginBottom: 10,
     },
     select: {
-        width: '100%'
+        width: '100%',
+        marginBottom: 5,
+        marginTop: 5
     }
 }));

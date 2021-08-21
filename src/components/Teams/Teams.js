@@ -33,10 +33,10 @@ const Teams = () => {
             <TableContainer component={Paper}>
                 <Table className={classes.table} size="small" aria-label="a dense table">
                     <TableHead>
-                        <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Player 1</TableCell>
-                            <TableCell>Player 2</TableCell>
+                        <TableRow className={classes.tableRow}>
+                            <TableCell className={classes.tableCell}>Name</TableCell>
+                            <TableCell className={classes.tableCell}>Player 1</TableCell>
+                            <TableCell className={classes.tableCell}>Player 2</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

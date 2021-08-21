@@ -20,12 +20,12 @@ const Games = () => {
             <TableContainer component={Paper}>
                 <Table className={classes.table} size="small" aria-label="a dense table">
                     <TableHead>
-                        <TableRow>
+                        <TableRow className={classes.tableRow}>
                             <TableCell> </TableCell>
-                            <TableCell>Team 1</TableCell>
-                            <TableCell>Team 2</TableCell>
-                            <TableCell>Team 1 score</TableCell>
-                            <TableCell>Team 2 score</TableCell>
+                            <TableCell className={classes.tableCell}>Team 1</TableCell>
+                            <TableCell className={classes.tableCell}>Team 2</TableCell>
+                            <TableCell className={classes.tableCell}>Team 1 score</TableCell>
+                            <TableCell className={classes.tableCell}>Team 2 score</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-// import { Field, reduxForm } from 'redux-form'
 import {TextField, Button, Typography, Paper, CircularProgress} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import Select from 'react-select';
@@ -24,50 +23,47 @@ const AddTeam = () => {
         player2: null
     })
 
-    _.forEach(players, (player, i) => {
-        players[i] = {
+    let playersSelect = []
+    _.forEach(players, player => {
+        playersSelect.push({
             value: player.id,
             label: player.name
-        }
+        })
     })
-    console.log('pl', players)
-    let players2 = players
+    let playersSelect2 = playersSelect
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(teamData.name)
         console.log(teamData.player1)
         console.log(teamData.player2)
+
+        if (!teamData.name) {
+            alert('Enter a team name !')
+            return
+        }
+
+        if (!teamData.player1) {
+            alert('Select at least the first player (a second player is not required)')
+            return
+        }
+
+        if (teamData.player1 === teamData.player2) {
+            alert('Do not select the same players !')
+            return
+        }
+
         dispatch(allActions.teamsActions.addTeam(teamData.name, teamData.player1, teamData.player2))
-        // dispatch(allActions.teamsActions.getTeams());
-        // dispatch(createTeam(teamData))
     }
 
     const state = {
         selectedOption: null,
     }
     const handleChange = (selectedOption) => {
-        // this.setState({ selectedOption });
-        console.log(`Option selected:`, selectedOption);
-
         teamData.player1 = selectedOption.value
-
-        const playerToRemove = _.find(players2, pl => {
-            return pl.value === selectedOption.value
-        })
-        _.remove(players2, playerToRemove)
-        console.log('sssa', players2)
     }
     const handleChange2 = (selectedOption) => {
-        // this.setState({ selectedOption });
-        console.log(`Option selected:`, selectedOption);
-
         teamData.player2 = selectedOption.value
-
-        const playerToRemove = _.find(players, pl => {
-            return pl.value === selectedOption.value
-        })
-        _.remove(players, playerToRemove)
     }
 
     const clear = () => {
@@ -88,14 +84,15 @@ const AddTeam = () => {
                       onChange={(e) => setTeamData({ ...teamData, name: e.target.value })}
                   />
                   <Select
-                      label="Team name"
+                      placeholder='Select the first player'
                       className={classes.select}
                       onChange={handleChange}
-                      options={players} />
+                      options={playersSelect} />
                   <Select
+                      placeholder='Select the second player'
                       className={classes.select}
                       onChange={handleChange2}
-                      options={players2} />
+                      options={playersSelect2} />
                   <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                   <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
               </form>

@@ -3,7 +3,6 @@ import * as api from '../api';
 const getTeams = () => async (dispatch) => {
     try {
         const { data } = await api.fetchTeams();
-        console.log('dataaa', data)
 
         // dispatch(data);
         dispatch({ type: 'FETCH_ALL_TEAMS', payload: data })

@@ -12,13 +12,14 @@ export default makeStyles((theme) => ({
         textAlign: 'center'
     },
     table: {
-        minWidth: 400,
-
+        minWidth: 400
     },
-    // tableRow: {
-    //     backgroundColor: 'black',
-    //     fontColor: 'white',
-    // },
+    tableRow: {
+        backgroundColor: 'black',
+    },
+    tableCell: {
+        color: 'white'
+    },
     root: {
         '& .MuiTextField-root': {
             margin: theme.spacing(1),
@@ -37,6 +38,7 @@ export default makeStyles((theme) => ({
         margin: '10px 0',
     },
     buttonSubmit: {
+        marginTop: 5,
         marginBottom: 10,
     }
 }));

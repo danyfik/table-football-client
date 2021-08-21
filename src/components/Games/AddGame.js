@@ -8,11 +8,12 @@ import _ from 'lodash';
 import useStyles from './styles.js';
 import allActions from "../../actions";
 
-const AddTeam = () => {
+const AddGame = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const teamsState = useSelector((state) => state.teams);
     let teams = teamsState.teams
+    console.log('teams', teams)
 
     useEffect(() => {
         dispatch(allActions.teamsActions.getTeams());
@@ -25,45 +26,43 @@ const AddTeam = () => {
         team2score: null
     })
 
-    _.forEach(teams, (team, i) => {
-        teams[i] = {
+    let teamsSelect = []
+    _.forEach(teams, team => {
+        teamsSelect.push({
             value: team.id,
             label: team.name
-        }
+        })
     })
-    let teams2 = teams
+    let teamsSelect2 = teamsSelect
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(allActions.gamesActions.addGame(gameData.team1, gameData.team2, 3, 2))
-        // dispatch(allActions.teamsActions.getTeams());
-        // dispatch(createTeam(gameData))
+        if (!gameData.team1 || !gameData.team2) {
+            alert('Select the two teams !')
+            return
+        }
+
+        if (gameData.team1 === gameData.team2) {
+            alert('Select two different teams !')
+            return
+        }
+
+        if (gameData.team1score === gameData.team2score) {
+            alert('It can not be a tie game !')
+            return
+        }
+
+        dispatch(allActions.gamesActions.addGame(gameData.team1, gameData.team2, gameData.team1score, gameData.team2score))
     }
 
     const state = {
         selectedOption: null,
     }
     const handleChange = (selectedOption) => {
-        // this.setState({ selectedOption });
-        console.log(`Option selected:`, selectedOption);
-
         gameData.team1 = selectedOption.value
-
-        const gameToRemove = _.find(teams2, team => {
-            return team.value === selectedOption.value
-        })
-        _.remove(teams2, gameToRemove)
     }
     const handleChange2 = (selectedOption) => {
-        // this.setState({ selectedOption });
-        console.log(`Option selected:`, selectedOption);
-
         gameData.team2 = selectedOption.value
-
-        const gameToRemove = _.find(teams, team => {
-            return team.value === selectedOption.value
-        })
-        _.remove(teams, gameToRemove)
     }
 
     const clear = () => {
@@ -74,28 +73,34 @@ const AddTeam = () => {
         !teams ? <CircularProgress /> : (
           <Paper className={classes.paper}>
               <form autoComplete="off" className={classes.form} onSubmit={handleSubmit}>
-                  <Typography variant="h6">Create a game</Typography>
+                  <Typography variant="h6">Create a completed game</Typography>
                   <Select
+                      placeholder='Select the first team'
                       className={classes.select}
                       onChange={handleChange}
-                      options={teams} />
+                      options={teamsSelect} />
                   <Select
+                      placeholder='Select the second team'
                       className={classes.select}
                       onChange={handleChange2}
-                      options={teams2} />
+                      options={teamsSelect2} />
                   <TextField
                       name="team1score"
+                      type="number"
+                      inputProps={{ min: 0 }}
                       // variant="outline"
                       label="Team 1 score"
                       fullWidth
-                      value={2}
+                      value={gameData.team1score || 0}
                       onChange={(e) => setGameData({ ...gameData, team1score: e.target.value })}/>
                   <TextField
                       name="team2score"
+                      type="number"
+                      inputProps={{ min: 0 }}
                       // variant="outline"
                       label="Team 2 score"
                       fullWidth
-                      value={2}
+                      value={gameData.team2score || 0}
                       onChange={(e) => setGameData({ ...gameData, team2score: e.target.value })}/>
                   <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                   <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
@@ -106,4 +111,4 @@ const AddTeam = () => {
     );
 }
 
-export default AddTeam;
+export default AddGame;

@@ -15,6 +15,18 @@ const AddPlayer = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        console.log(playerData.name)
+        console.log(playerData.country)
+
+        if (!playerData.name) {
+            alert('Please enter a team name !')
+            return
+        }
+        if (!playerData.country) {
+            alert('Please enter a country !')
+            return
+        }
         console.log('submit')
         dispatch(allActions.playersActions.addPlayer(playerData.name, playerData.country))
     }
