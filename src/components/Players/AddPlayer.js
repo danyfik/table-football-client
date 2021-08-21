@@ -16,11 +16,7 @@ const AddPlayer = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('submit')
-        console.log(playerData.name)
-        console.log(playerData.country)
         dispatch(allActions.playersActions.addPlayer(playerData.name, playerData.country))
-        dispatch(allActions.playersActions.getPlayers());
-        // dispatch(createPlayer(playerData))
     }
 
     const clear = () => {
@@ -30,7 +26,7 @@ const AddPlayer = () => {
     return (
       <Paper className={classes.paper}>
           <form autoComplete="off" noValidate className={classes.form} onSubmit={handleSubmit}>
-              <Typography variant="h6">Add a player</Typography>
+              <Typography variant="h6">Create a player</Typography>
               <TextField
                   name="name"
                   // variant="outline"

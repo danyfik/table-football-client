@@ -3,7 +3,6 @@ import * as api from '../api';
 const getGames = () => async (dispatch) => {
     try {
         const { data } = await api.fetchGames();
-        console.log('DATA games', data)
 
         dispatch({ type: 'FETCH_ALL_GAMES', payload: data })
     } catch (error) {
@@ -11,17 +10,17 @@ const getGames = () => async (dispatch) => {
     }
 }
 
-export default {
-    getGames
+const addGame = (team1, team2, team1Score, team2Score) => async (dispatch) => {
+    try {
+        const { data } = await api.addGame(team1, team2, team1Score, team2Score);
+
+        dispatch({ type: 'CREATE_GAME', payload: data })
+    } catch (error) {
+        console.log(error.message);
+    }
 }
-//
-// export const createGame = (game) => async (dispatch) => {
-//     try {
-//         const { data } = await api.createGame(game);
-//         console.log(data)
-//
-//         dispatch({ type: 'CREATE', payload: data })
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
+
+export default {
+    getGames,
+    addGame
+}

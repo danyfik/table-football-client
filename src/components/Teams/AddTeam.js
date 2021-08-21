@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 // import { Field, reduxForm } from 'redux-form'
 import {TextField, Button, Typography, Paper, CircularProgress} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
@@ -13,7 +13,10 @@ const AddTeam = () => {
     const dispatch = useDispatch();
     const playersState = useSelector((state) => state.players);
     let players = playersState.players
-    console.log('players dans team', players)
+
+    useEffect(() => {
+        dispatch(allActions.playersActions.getPlayers());
+    }, [dispatch])
 
     const [teamData, setTeamData] = useState({
         name: '',
@@ -75,18 +78,19 @@ const AddTeam = () => {
         !players ? <CircularProgress /> : (
           <Paper className={classes.paper}>
               <form autoComplete="off" className={classes.form} onSubmit={handleSubmit}>
-                  <Typography variant="h6">Add a team</Typography>
+                  <Typography variant="h6">Create a team</Typography>
                   <TextField
                       name="name"
                       // variant="outline"
                       label="Team name"
                       fullWidth
                       value={teamData.name}
-                      onChange={(e) => setTeamData({ ...teamData, name: e.target.value })}/>
+                      onChange={(e) => setTeamData({ ...teamData, name: e.target.value })}
+                  />
                   <Select
+                      label="Team name"
                       className={classes.select}
                       onChange={handleChange}
-                      value={players[3]}
                       options={players} />
                   <Select
                       className={classes.select}

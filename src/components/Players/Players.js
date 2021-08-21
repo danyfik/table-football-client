@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grid, CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
-import Player from './Player/Player.js'
 import useStyles from './styles.js'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import allActions from "../../actions";
 
 const Players = () => {
     const classes = useStyles();
     const playersState = useSelector((state) => state.players);
     const players = playersState.players
-    console.log('players', players)
+    console.log('playersaaaa', players)
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(allActions.playersActions.getPlayers());
+    }, [dispatch])
 
     return (
         !players ? <CircularProgress /> : (

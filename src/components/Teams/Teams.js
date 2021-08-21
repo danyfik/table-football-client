@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     Grid,
     CircularProgress,
@@ -11,13 +11,20 @@ import {
     TableBody
 } from "@material-ui/core";
 import useStyles from './styles.js'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import allActions from "../../actions";
 
 const Teams = () => {
     const classes = useStyles();
     const teamsState = useSelector((state) => state.teams);
     const teams = teamsState.teams
-    console.log('teams', teams)
+    console.log('teamsaaaa', teams)
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(allActions.teamsActions.getTeams());
+    }, [dispatch])
 
     const noSecondPlayer = <span><i>No second player</i></span>
 

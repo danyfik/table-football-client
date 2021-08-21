@@ -12,4 +12,5 @@ export const fetchTeams = () => axios.get(`${url}teams`);
 export const fetchGames = () => axios.get(`${url}games`);
 export const addPlayer = (name, country) => axios.post(`${url}players`, {name, country});
 export const addTeam = (name, player1, player2) => axios.post(`${url}teams`, {name, player1, player2});
-export const createPlayer = (newPlayer) => axios.post(url, newPlayer);
+export const addGame = (team1, team2, team1Score, team2Score) => axios.post(`${url}games`, {team1, team2, team1Score, team2Score});
+// export const createPlayer = (newPlayer) => axios.post(url, newPlayer);

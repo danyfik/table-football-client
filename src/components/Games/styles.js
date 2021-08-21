@@ -12,6 +12,34 @@ export default makeStyles((theme) => ({
         textAlign: 'center'
     },
     table: {
-        minWidth: 400
+        minWidth: 400,
+
+    },
+    // tableRow: {
+    //     backgroundColor: 'black',
+    //     fontColor: 'white',
+    // },
+    root: {
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+        },
+    },
+    paper: {
+        padding: theme.spacing(2),
+    },
+    form: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+    },
+    fileInput: {
+        width: '97%',
+        margin: '10px 0',
+    },
+    buttonSubmit: {
+        marginBottom: 10,
+    },
+    select: {
+        width: '100%'
     }
 }));
