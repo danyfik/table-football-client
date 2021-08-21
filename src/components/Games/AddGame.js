@@ -52,7 +52,9 @@ const AddGame = () => {
             return
         }
 
-        dispatch(allActions.gamesActions.addGame(gameData.team1, gameData.team2, gameData.team1score, gameData.team2score))
+        dispatch(allActions.gamesActions.addGame(gameData.team1, gameData.team2, gameData.team1score, gameData.team2score)).then(() => {
+            dispatch(allActions.gamesActions.getGames())
+        })
     }
 
     const state = {

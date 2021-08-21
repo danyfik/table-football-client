@@ -27,8 +27,10 @@ const AddPlayer = () => {
             alert('Please enter a country !')
             return
         }
-        console.log('submit')
-        dispatch(allActions.playersActions.addPlayer(playerData.name, playerData.country))
+
+        dispatch(allActions.playersActions.addPlayer(playerData.name, playerData.country)).then(() => {
+            dispatch(allActions.playersActions.getPlayers())
+        })
     }
 
     const clear = () => {

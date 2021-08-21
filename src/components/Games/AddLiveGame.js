@@ -25,13 +25,14 @@ const AddLiveGame = () => {
         team2score: 0
     })
 
-    // _.forEach(teams, (team, i) => {
-    //     teams[i] = {
-    //         value: team.id,
-    //         label: team.name
-    //     }
-    // })
-    let teams2 = teams
+    let teamsSelect = []
+    _.forEach(teams, team => {
+        teamsSelect.push({
+            value: team.id,
+            label: team.name
+        })
+    })
+    let teamsSelect2 = teamsSelect
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -48,7 +49,10 @@ const AddLiveGame = () => {
             alert('It can not be a tie game !')
             return
         }
-        dispatch(allActions.gamesActions.addGame(gameData.team1, gameData.team2, gameData.team1score, gameData.team2score))
+
+        dispatch(allActions.gamesActions.addGame(gameData.team1, gameData.team2, gameData.team1score, gameData.team2score)).then(() => {
+            dispatch(allActions.gamesActions.getGames())
+        })
     }
 
     const state = {
@@ -60,10 +64,10 @@ const AddLiveGame = () => {
 
         gameData.team1 = selectedOption.value
 
-        const gameToRemove = _.find(teams2, team => {
-            return team.value === selectedOption.value
-        })
-        _.remove(teams2, gameToRemove)
+        // const gameToRemove = _.find(teams2, team => {
+        //     return team.value === selectedOption.value
+        // })
+        // _.remove(teams2, gameToRemove)
     }
     const handleChange2 = (selectedOption) => {
         // this.setState({ selectedOption });
@@ -71,10 +75,10 @@ const AddLiveGame = () => {
 
         gameData.team2 = selectedOption.value
 
-        const gameToRemove = _.find(teams, team => {
-            return team.value === selectedOption.value
-        })
-        _.remove(teams, gameToRemove)
+        // const gameToRemove = _.find(teams, team => {
+        //     return team.value === selectedOption.value
+        // })
+        // _.remove(teams, gameToRemove)
     }
 
     const clear = () => {
@@ -105,12 +109,12 @@ const AddLiveGame = () => {
                       placeholder='Select the first team'
                       className={classes.select}
                       onChange={handleChange}
-                      options={teams} />
+                      options={teamsSelect} />
                   <Select
                       placeholder='Select the second team'
                       className={classes.select}
                       onChange={handleChange2}
-                      options={teams2} />
+                      options={teamsSelect2} />
                   <div className={classes.divAlign}>
                       <Button
                           className={classes.smallButtonSubmit}

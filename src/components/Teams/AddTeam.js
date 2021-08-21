@@ -12,6 +12,7 @@ const AddTeam = () => {
     const dispatch = useDispatch();
     const playersState = useSelector((state) => state.players);
     let players = playersState.players
+    let caca = true
 
     useEffect(() => {
         dispatch(allActions.playersActions.getPlayers());
@@ -53,7 +54,9 @@ const AddTeam = () => {
             return
         }
 
-        dispatch(allActions.teamsActions.addTeam(teamData.name, teamData.player1, teamData.player2))
+        dispatch(allActions.teamsActions.addTeam(teamData.name, teamData.player1, teamData.player2)).then(() => {
+            dispatch(allActions.teamsActions.getTeams())
+        })
     }
 
     const state = {
