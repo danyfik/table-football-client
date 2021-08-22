@@ -56,5 +56,8 @@ export default makeStyles((theme) => ({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    buttonCreate: {
+        fontSize: "x-large"
     }
 }));

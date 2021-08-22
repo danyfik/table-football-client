@@ -12,7 +12,11 @@ const AddTeam = () => {
     const dispatch = useDispatch();
     const playersState = useSelector((state) => state.players);
     let players = playersState.players
-    let caca = true
+
+    const [isOpen, setIsOpen] = useState(false)
+    const openCloseForm = () => {
+        setIsOpen(!isOpen)
+    };
 
     useEffect(() => {
         dispatch(allActions.playersActions.getPlayers());
@@ -77,27 +81,31 @@ const AddTeam = () => {
         !players ? <CircularProgress /> : (
           <Paper className={classes.paper}>
               <form autoComplete="off" className={classes.form} onSubmit={handleSubmit}>
-                  <Typography variant="h6">Create a team</Typography>
-                  <TextField
-                      name="name"
-                      // variant="outline"
-                      label="Team name"
-                      fullWidth
-                      value={teamData.name}
-                      onChange={(e) => setTeamData({ ...teamData, name: e.target.value })}
-                  />
-                  <Select
-                      placeholder='Select the first player'
-                      className={classes.select}
-                      onChange={handleChange}
-                      options={playersSelect} />
-                  <Select
-                      placeholder='Select the second player'
-                      className={classes.select}
-                      onChange={handleChange2}
-                      options={playersSelect2} />
-                  <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
-                  <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+                  <Button className={classes.buttonCreate} onClick={openCloseForm}>Create a team</Button>
+                  {isOpen && (
+                      <div>
+                          <TextField
+                              name="name"
+                              // variant="outline"
+                              label="Team name"
+                              fullWidth
+                              value={teamData.name}
+                              onChange={(e) => setTeamData({ ...teamData, name: e.target.value })}
+                          />
+                          <Select
+                              placeholder='Select the first player'
+                              className={classes.select}
+                              onChange={handleChange}
+                              options={playersSelect} />
+                          <Select
+                              placeholder='Select the second player'
+                              className={classes.select}
+                              onChange={handleChange2}
+                              options={playersSelect2} />
+                          <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
+                          <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+                      </div>
+                  )}
               </form>
 
           </Paper>

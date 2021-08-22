@@ -10,7 +10,6 @@ const TeamsContainer = () => {
         <Container>
             <Grid container justify="space-between" spacing={2}>
                 <Grid item xs={12} sm={7}>
-                    <h1>TEAMS LIST</h1>
                     <Teams />
                 </Grid>
                 <Grid item xs={12} sm={4}>

@@ -40,5 +40,8 @@ export default makeStyles((theme) => ({
     buttonSubmit: {
         marginTop: 5,
         marginBottom: 10,
+    },
+    buttonCreate: {
+        fontSize: "x-large"
     }
 }));

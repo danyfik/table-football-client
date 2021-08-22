@@ -11,20 +11,14 @@ const GameContainer = () => {
 
     return (
         <Container>
-            <Grid>
-                <Grid>
-                    <h1>GAMES LIST</h1>
+            <Grid container justify="space-between" spacing={1}>
+                <Grid item xs={12} sm={7}>
                     <Games />
                 </Grid>
-            </Grid>
-            <br/>
-            <br/>
-            <Grid container justify="space-between">
-                <Grid item xs={12} sm={6}>
-                    <AddGame></AddGame>
-                </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={4}>
                     <AddLiveGame></AddLiveGame>
+                    <br/>
+                    <AddGame></AddGame>
                 </Grid>
             </Grid>
         </Container>

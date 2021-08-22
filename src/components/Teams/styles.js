@@ -44,5 +44,8 @@ export default makeStyles((theme) => ({
         width: '100%',
         marginBottom: 5,
         marginTop: 5
+    },
+    buttonCreate: {
+        fontSize: "x-large"
     }
 }));

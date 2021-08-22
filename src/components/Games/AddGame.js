@@ -13,7 +13,11 @@ const AddGame = () => {
     const dispatch = useDispatch();
     const teamsState = useSelector((state) => state.teams);
     let teams = teamsState.teams
-    console.log('teams', teams)
+
+    const [isOpen, setIsOpen] = useState(false)
+    const openCloseForm = () => {
+        setIsOpen(!isOpen)
+    };
 
     useEffect(() => {
         dispatch(allActions.teamsActions.getTeams());
@@ -54,12 +58,10 @@ const AddGame = () => {
 
         dispatch(allActions.gamesActions.addGame(gameData.team1, gameData.team2, gameData.team1score, gameData.team2score)).then(() => {
             dispatch(allActions.gamesActions.getGames())
+            clear()
         })
     }
 
-    const state = {
-        selectedOption: null,
-    }
     const handleChange = (selectedOption) => {
         gameData.team1 = selectedOption.value
     }
@@ -75,37 +77,42 @@ const AddGame = () => {
         !teams ? <CircularProgress /> : (
           <Paper className={classes.paper}>
               <form autoComplete="off" className={classes.form} onSubmit={handleSubmit}>
-                  <Typography variant="h6">Create a completed game</Typography>
-                  <Select
-                      placeholder='Select the first team'
-                      className={classes.select}
-                      onChange={handleChange}
-                      options={teamsSelect} />
-                  <Select
-                      placeholder='Select the second team'
-                      className={classes.select}
-                      onChange={handleChange2}
-                      options={teamsSelect2} />
-                  <TextField
-                      name="team1score"
-                      type="number"
-                      inputProps={{ min: 0 }}
-                      // variant="outline"
-                      label="Team 1 score"
-                      fullWidth
-                      value={gameData.team1score || 0}
-                      onChange={(e) => setGameData({ ...gameData, team1score: e.target.value })}/>
-                  <TextField
-                      name="team2score"
-                      type="number"
-                      inputProps={{ min: 0 }}
-                      // variant="outline"
-                      label="Team 2 score"
-                      fullWidth
-                      value={gameData.team2score || 0}
-                      onChange={(e) => setGameData({ ...gameData, team2score: e.target.value })}/>
-                  <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
-                  <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+                  <Button className={classes.buttonCreate} onClick={openCloseForm}>Create a completed game</Button>
+                  <Typography><i>Enter the score of a completed game</i></Typography>
+                  {isOpen && (
+                      <div>
+                          <Select
+                              placeholder='Select the first team'
+                              className={classes.select}
+                              onChange={handleChange}
+                              options={teamsSelect} />
+                          <Select
+                              placeholder='Select the second team'
+                              className={classes.select}
+                              onChange={handleChange2}
+                              options={teamsSelect2} />
+                          <TextField
+                              name="team1score"
+                              type="number"
+                              inputProps={{ min: 0 }}
+                              // variant="outline"
+                              label="Team 1 score"
+                              fullWidth
+                              value={gameData.team1score || 0}
+                              onChange={(e) => setGameData({ ...gameData, team1score: e.target.value })}/>
+                          <TextField
+                              name="team2score"
+                              type="number"
+                              inputProps={{ min: 0 }}
+                              // variant="outline"
+                              label="Team 2 score"
+                              fullWidth
+                              value={gameData.team2score || 0}
+                              onChange={(e) => setGameData({ ...gameData, team2score: e.target.value })}/>
+                          <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
+                          <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+                      </div>
+                  )}
               </form>
 
           </Paper>
