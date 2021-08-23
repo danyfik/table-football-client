@@ -94,7 +94,7 @@ const AddLiveGame = () => {
                   <Button className={classes.buttonCreate} onClick={openCloseForm}>Create a live game</Button>
                   <Typography><i>Keep track of the score while the game is being played</i></Typography>
                   {isOpen && (
-                      <div>
+                      <div className={classes.divForm}>
                           <Select
                               placeholder='Select the first team'
                               className={classes.select}

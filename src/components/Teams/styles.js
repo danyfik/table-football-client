@@ -47,5 +47,8 @@ export default makeStyles((theme) => ({
     },
     buttonCreate: {
         fontSize: "x-large"
+    },
+    divForm: {
+        width: '100%'
     }
 }));

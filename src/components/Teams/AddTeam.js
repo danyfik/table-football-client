@@ -22,6 +22,8 @@ const AddTeam = () => {
         dispatch(allActions.playersActions.getPlayers());
     }, [dispatch])
 
+    players = _.filter(players, {'teamId': null})
+
     const [teamData, setTeamData] = useState({
         name: '',
         player1: null,
@@ -60,12 +62,10 @@ const AddTeam = () => {
 
         dispatch(allActions.teamsActions.addTeam(teamData.name, teamData.player1, teamData.player2)).then(() => {
             dispatch(allActions.teamsActions.getTeams())
+            clear()
         })
     }
 
-    const state = {
-        selectedOption: null,
-    }
     const handleChange = (selectedOption) => {
         teamData.player1 = selectedOption.value
     }
@@ -83,7 +83,7 @@ const AddTeam = () => {
               <form autoComplete="off" className={classes.form} onSubmit={handleSubmit}>
                   <Button className={classes.buttonCreate} onClick={openCloseForm}>Create a team</Button>
                   {isOpen && (
-                      <div>
+                      <div className={classes.divForm}>
                           <TextField
                               name="name"
                               // variant="outline"
@@ -93,12 +93,12 @@ const AddTeam = () => {
                               onChange={(e) => setTeamData({ ...teamData, name: e.target.value })}
                           />
                           <Select
-                              placeholder='Select the first player'
+                              placeholder='Select an available first player'
                               className={classes.select}
                               onChange={handleChange}
                               options={playersSelect} />
                           <Select
-                              placeholder='Select the second player'
+                              placeholder='Select an available second player'
                               className={classes.select}
                               onChange={handleChange2}
                               options={playersSelect2} />

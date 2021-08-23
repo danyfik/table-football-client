@@ -5,7 +5,6 @@ import Players from './Players.js'
 import AddPlayer from './AddPlayer.js';
 
 const PlayersContainer = () => {
-
     return (
         <Container>
             <Grid container justify="space-between" spacing={2}>

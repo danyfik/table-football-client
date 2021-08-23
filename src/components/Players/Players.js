@@ -9,25 +9,6 @@ const Players = () => {
     const classes = useStyles();
     const playersState = useSelector((state) => state.players);
     const players = playersState.players
-    console.log('playersaaaa', players)
-
-    // const StyledTableCell = withStyles(() => ({
-    //     head: {
-    //         backgroundColor: 'black',
-    //         color: 'white',
-    //     },
-    //     body: {
-    //         fontSize: 14,
-    //     },
-    // }))(TableCell);
-
-    // const StyledTableRow = withStyles(() => ({
-    //     root: {
-    //         '&:nth-of-type(odd)': {
-    //             backgroundColor: 'black',
-    //         },
-    //     },
-    // }))(TableRow);
 
     const dispatch = useDispatch();
 

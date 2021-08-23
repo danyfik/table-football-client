@@ -80,7 +80,7 @@ const AddGame = () => {
                   <Button className={classes.buttonCreate} onClick={openCloseForm}>Create a completed game</Button>
                   <Typography><i>Enter the score of a completed game</i></Typography>
                   {isOpen && (
-                      <div>
+                      <div className={classes.divForm}>
                           <Select
                               placeholder='Select the first team'
                               className={classes.select}
