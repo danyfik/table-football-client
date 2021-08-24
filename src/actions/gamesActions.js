@@ -20,7 +20,18 @@ const addGame = (team1, team2, team1Score, team2Score) => async (dispatch) => {
     }
 }
 
+const getPlayerGames = (playerId) => async (dispatch) => {
+    try {
+        const { data } = await api.getPlayerGames(playerId);
+
+        dispatch({ type: 'FETCH_PLAYER_GAMES', payload: data })
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 export default {
     getGames,
-    addGame
+    addGame,
+    getPlayerGames
 }

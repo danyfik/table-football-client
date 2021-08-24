@@ -13,17 +13,20 @@ const Navbar = () => {
             <Nav>
                 <Bars />
                 <NavMenu>
-                    <NavLink to="/" activeStyle>
+                    <NavLink to="/">
                         PLAYERS
                     </NavLink>
-                    <NavLink to="/teams" activeStyle>
+                    <NavLink to="/teams">
                         TEAMS
                     </NavLink>
-                    <NavLink to="/games" activeStyle>
+                    <NavLink to="/games">
                         GAMES
                     </NavLink>
-                    <NavLink to="/dashboard" activeStyle>
+                    <NavLink to="/dashboard">
                         DASHBOARD
+                    </NavLink>
+                    <NavLink to="/history">
+                        HISTORY
                     </NavLink>
                 </NavMenu>
             </Nav>
