@@ -64,7 +64,6 @@ const AddPlayer = () => {
                   </div>
               )}
           </form>
-
       </Paper>
     );
 }

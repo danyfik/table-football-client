@@ -4,11 +4,8 @@ import { Container, Grid } from "@material-ui/core";
 import Games from './Games.js'
 import AddGame from './AddGame.js';
 import AddLiveGame from './AddLiveGame.js';
-import useStyles from './styles.js';
 
 const GameContainer = () => {
-    const classes = useStyles();
-
     return (
         <Container>
             <Grid container justify="space-between" spacing={1}>
