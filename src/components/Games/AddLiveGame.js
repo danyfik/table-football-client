@@ -41,10 +41,6 @@ const AddLiveGame = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(gameData.team1)
-        console.log(gameData.team2)
-        console.log(gameData.team1score)
-        console.log(gameData.team2score)
         if (!gameData.team1 || !gameData.team2) {
             alert('Please select the two teams !')
             return

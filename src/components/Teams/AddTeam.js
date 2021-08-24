@@ -41,9 +41,6 @@ const AddTeam = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(teamData.name)
-        console.log(teamData.player1)
-        console.log(teamData.player2)
 
         if (!teamData.name) {
             alert('Enter a team name !')

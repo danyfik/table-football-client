@@ -18,7 +18,6 @@ const Teams = () => {
     const classes = useStyles();
     const teamsState = useSelector((state) => state.teams);
     const teams = teamsState.teams
-    console.log('teamsaaaa', teams)
 
     const dispatch = useDispatch();
 
