@@ -45,6 +45,11 @@ const AddLiveGame = () => {
             return
         }
 
+        if (gameData.team1 === gameData.team2) {
+            alert('Select two different teams !')
+            return
+        }
+
         if (gameData.team1score === gameData.team2score) {
             alert('It can not be a tie game !')
             return

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Grid, CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
+import { CircularProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
 import useStyles from './styles.js'
 import { useDispatch, useSelector } from "react-redux";
 import allActions from "../../actions";
